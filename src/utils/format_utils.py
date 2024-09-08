@@ -87,3 +87,36 @@ def format_paper_info(paper_info, url):
         },
     ]
     return message, message_blocks
+
+
+def format_recommendation(recommend_papers):
+    message = "Recommended Papers:\n"
+    bullet_elements = []
+    for paper in recommend_papers:
+        paper_id = paper["paperId"]
+        url = f"https://www.semanticscholar.org/paper/{paper_id}"
+        title = paper["title"]
+        message += title + "\n"
+        bullet_elements.append(
+            {
+                "type": "rich_text_section",
+                "elements": [{"type": "link", "url": url, "text": title}],
+            }
+        )
+    message_blocks = [
+        {
+            "type": "header",
+            "text": {"type": "plain_text", "text": "Recommended Papers:"},
+        },
+        {
+            "type": "rich_text",
+            "elements": [
+                {
+                    "type": "rich_text_list",
+                    "style": "bullet",
+                    "elements": bullet_elements,
+                },
+            ],
+        },
+    ]
+    return message, message_blocks
