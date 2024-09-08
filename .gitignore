@@ -1,0 +1,6 @@
+# uv
+uv.lock
+__pycache__/
+
+tmp/
+.env
